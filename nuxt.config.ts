@@ -17,9 +17,13 @@ export default defineNuxtConfig({
     vite: {
         vueJsx: {},
     },
+    imports: {
+        dirs: ['stores']
+    },
     build: {
         analyze: {
             enabled: true,
         },
     },
+
 })

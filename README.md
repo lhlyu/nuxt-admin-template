@@ -1,6 +1,6 @@
 # Nuxt-Admin-Template
 
-一款Nuxt3管理模板，基于Vite、NaiveUI、Vue3和TypeScript。
+一款Nuxt3管理模板，基于Vite、ArcoDesign、Vue3和TypeScript。
 
 
 ## 参考
