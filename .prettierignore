@@ -1,0 +1,8 @@
+*.toml
+*.ini
+*.md
+.idea
+node_modules
+test
+dist
+*-lock.yaml

@@ -1,0 +1,29 @@
+{
+  "arrowParens": "always",
+  "bracketSameLine": false,
+  "bracketSpacing": false,
+  "semi": false,
+  "experimentalTernaries": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "quoteProps": "as-needed",
+  "trailingComma": "all",
+  "singleAttributePerLine": true,
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": false,
+  "proseWrap": "preserve",
+  "insertPragma": false,
+  "printWidth": 120,
+  "tabWidth": 4,
+  "useTabs": false,
+  "embeddedLanguageFormatting": "auto",
+  "plugins": ["prettier-plugin-rational-order"],
+  "overrides": [
+    {
+      "files": "*.{json,yaml,yml}",
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ]
+}
