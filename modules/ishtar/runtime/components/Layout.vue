@@ -59,17 +59,14 @@
                             <a-button
                                 shape="circle"
                                 size="mini"
-                                @click="toggleTheme"
                             >
                                 <template #icon>
                                     <Icon
-                                        v-if="mode === 'dark'"
                                         name="ri:sun-line"
                                     ></Icon>
-                                    <Icon
-                                        v-else
-                                        name="ri:moon-line"
-                                    ></Icon>
+<!--                                    <Icon-->
+<!--                                        name="ri:moon-line"-->
+<!--                                    ></Icon>-->
                                 </template>
                             </a-button>
                             <slot name="header-user"></slot>
@@ -87,7 +84,7 @@
 </template>
 
 <script setup lang="ts">
-const {sider, onCollapsed, mode, toggleTheme} = useIshtarLayout()
+const {sider, onCollapsed } = useIshtarLayout()
 </script>
 
 <style lang="scss" scoped>

@@ -54,20 +54,10 @@ const useIshtarLayout = () => {
         window.removeEventListener('resize', onResize)
     })
 
-    const mode = useColorMode({
-        selector: 'body',
-        attribute: 'arco-theme',
-    })
-
-    const toggleTheme = () => {
-        mode.value = mode.value === 'light' ? 'dark' : 'light'
-    }
 
     return {
         sider,
         onCollapsed,
-        mode,
-        toggleTheme,
     }
 }
 

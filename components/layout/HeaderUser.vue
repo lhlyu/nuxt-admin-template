@@ -1,5 +1,5 @@
 <template>
-    <a-dropdown trigger="hover">
+    <a-dropdown trigger="hover" @select="selectHandler">
         <a-space
             size="mini"
             class="header-user"
@@ -13,23 +13,33 @@
             <span>管理员</span>
         </a-space>
         <template #content>
-            <a-doption>
+            <a-doption value="setting">
                 <template #icon>
                     <Icon name="ri:settings-3-line"></Icon>
                 </template>
-                <template #default>设置</template>
+                设置
             </a-doption>
-            <a-doption>
+            <a-doption value="exit">
                 <template #icon>
                     <Icon name="ri:logout-circle-r-line"></Icon>
                 </template>
-                <template #default>退出</template>
+                退出
             </a-doption>
         </template>
     </a-dropdown>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const router = useRouter()
+
+const selectHandler = (val: string) => {
+    console.log('val:', val)
+    switch (val) {
+        case 'exit':
+            router.push('/')
+    }
+}
+</script>
 
 <style lang="scss" scoped>
 .header-user {
