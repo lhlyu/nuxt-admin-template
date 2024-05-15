@@ -8,6 +8,7 @@
                 <img
                     src="/logo.png"
                     alt="avatar"
+                    width="20"
                 />
             </a-avatar>
             <span>管理员</span>
@@ -45,5 +46,9 @@ const selectHandler = (val: string) => {
 .header-user {
     cursor: pointer;
     user-select: none;
+    
+    img {
+        border-radius: 50%;
+    }
 }
 </style>

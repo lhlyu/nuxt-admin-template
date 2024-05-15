@@ -1,5 +1,5 @@
 <template>
-    <a-layout>
+    <a-layout has-sider>
         <Title>{{ $route.meta.title }}</Title>
         <a-layout-sider
             collapsible
