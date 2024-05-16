@@ -14,8 +14,8 @@ import type {RouteRecordRaw} from 'vue-router'
 const router = useRouter()
 const route = useRoute()
 
-const menus = ref<RouteRecordRaw[]>([])
-const selectedKeys = ref<unknown[]>([])
+const menus = ref<RouteRecordRaw[]>(router.options.routes.find((value) => value.path === '/admin')?.children ?? [])
+const selectedKeys = ref<unknown[]>([route.name])
 const openKeys = ref<unknown[]>([])
 
 const findTopMenuName = () => {
@@ -35,11 +35,7 @@ watch(
     },
 )
 
-onMounted(() => {
-    menus.value = router.options.routes.find((value) => value.path === '/admin')?.children ?? []
-    selectedKeys.value = [route.name]
-    findTopMenuName()
-})
+findTopMenuName()
 </script>
 
 <style scoped></style>

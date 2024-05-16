@@ -25,5 +25,7 @@ export default defineNuxtConfig({
             enabled: true,
         },
     },
+    hooks: {
 
+    },
 })

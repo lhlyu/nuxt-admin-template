@@ -34,7 +34,6 @@
 const router = useRouter()
 
 const selectHandler = (val: string) => {
-    console.log('val:', val)
     switch (val) {
         case 'exit':
             router.push('/')
