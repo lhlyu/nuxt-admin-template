@@ -6,7 +6,7 @@
         >
             <a-avatar :size="20">
                 <img
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="avatar"
                     width="20"
                 />

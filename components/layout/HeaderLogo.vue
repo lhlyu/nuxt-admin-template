@@ -4,7 +4,7 @@
             <img
                 width="18"
                 alt="logo"
-                src="/logo.png"
+                src="/logo.webp"
             />
             <span>管理后台</span>
         </a-space>
