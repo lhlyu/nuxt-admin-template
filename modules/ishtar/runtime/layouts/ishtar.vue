@@ -1,5 +1,4 @@
 <template>
-    <NuxtLoadingIndicator />
     <IshtarLayout>
         <template #header-logo>
             <slot name="header-logo" />
