@@ -24,6 +24,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@types/mockjs": "^1.0.10",
     "@vueuse/nuxt": "^10.9.0",
+    "arco-design-nuxt-module": "^0.1.0",
     "nuxt-icon": "^0.6.10",
     "prettier": "^3.2.5",
     "prettier-plugin-rational-order": "^1.0.3",

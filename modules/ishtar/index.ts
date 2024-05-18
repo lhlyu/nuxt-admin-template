@@ -22,6 +22,10 @@ export default defineNuxtModule({
     async setup(options, nuxt) {
         await installModule('@vueuse/nuxt')
         await installModule('nuxt-icon')
+        await installModule('arco-design-nuxt-module', {
+            icons: false,
+            importStyle: false,
+        })
 
         nuxt.hook('pages:extend', (pages) => {
             const pageDir = nuxt.options.rootDir + '/pages/'
@@ -39,9 +43,9 @@ export default defineNuxtModule({
             setName(pages)
         })
 
-        addPlugin({
-            src: resolve('runtime/plugins/arco.ts'),
-        })
+        // addPlugin({
+        //     src: resolve('runtime/plugins/arco.ts'),
+        // })
 
         addImportsDir(resolve('./runtime/composables'))
 

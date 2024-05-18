@@ -20,6 +20,9 @@ export default defineNuxtConfig({
     imports: {
         dirs: ['stores']
     },
+    css: [
+        "@arco-design/web-vue/dist/arco.css"
+    ],
     build: {
         analyze: {
             enabled: true,
