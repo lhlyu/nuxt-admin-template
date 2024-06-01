@@ -16,4 +16,7 @@ body {
     background: var(--el-bg-color);
     inset: 0;
 }
+:focus-visible {
+    outline: none;
+}
 </style>
