@@ -1,6 +1,8 @@
 <template>
     <el-space>
-        <LayoutSwitchTheme></LayoutSwitchTheme>
+        <ClientOnly>
+            <LayoutSwitchTheme></LayoutSwitchTheme>
+        </ClientOnly>
     </el-space>
 </template>
 
