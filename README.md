@@ -12,3 +12,5 @@
 - [bag-admin](https://vite.itnavs.com/admin/)
 - [MineAdmin](https://github.com/mineadmin/MineAdmin-Vue)
 - [vue3-tabs-chrome](https://github.com/viewweiwu/vue3-tabs-chrome)
+- [epic-astronomy/Waterfalls](https://github.com/epic-astronomy/Waterfalls)
+- [zptime/nuxt-admin-template](https://github.com/zptime/nuxt-admin-template)

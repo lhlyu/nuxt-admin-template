@@ -61,17 +61,18 @@
                                 size="mini"
                             >
                                 <template #icon>
-                                    <Icon
-                                        name="ri:sun-line"
-                                    ></Icon>
-<!--                                    <Icon-->
-<!--                                        name="ri:moon-line"-->
-<!--                                    ></Icon>-->
+                                    <Icon name="ri:sun-line"></Icon>
+                                    <!--                                    <Icon-->
+                                    <!--                                        name="ri:moon-line"-->
+                                    <!--                                    ></Icon>-->
                                 </template>
                             </a-button>
                             <slot name="header-user"></slot>
                         </a-space>
                     </div>
+                </div>
+                <div class="bottom">
+                    <IshtarTabsBar></IshtarTabsBar>
                 </div>
             </a-layout-header>
             <a-layout>
@@ -84,7 +85,7 @@
 </template>
 
 <script setup lang="ts">
-const {sider, onCollapsed } = useIshtarLayout()
+const {sider, onCollapsed} = useIshtarLayout()
 </script>
 
 <style lang="scss" scoped>
@@ -107,7 +108,7 @@ const {sider, onCollapsed } = useIshtarLayout()
         box-sizing: border-box;
         width: 100%;
         height: 50px;
-        padding: 0 20px;
+        padding: 0 16px;
         border-bottom: 1px solid var(--color-border-2);
 
         .left {
@@ -122,11 +123,17 @@ const {sider, onCollapsed } = useIshtarLayout()
             justify-content: flex-end;
         }
     }
+
+    .bottom {
+        box-sizing: border-box;
+        width: 100%;
+        height: 40px;
+    }
 }
 
 .arco-layout-content {
     box-sizing: border-box;
-    padding: 20px;
+    padding: 16px;
     overflow: auto;
     color: var(--color-text-1);
     background-color: var(--color-bg-3);

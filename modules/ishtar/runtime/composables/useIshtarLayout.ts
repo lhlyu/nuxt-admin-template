@@ -9,11 +9,13 @@ const defaultCollapsedWidth = 50
 
 // admin布局
 const useIshtarLayout = () => {
+    const device = useDevice()
+
     const sider = ref({
-        defaultCollapsed: false,
-        collapsed: false,
-        collapsedWidth: defaultCollapsedWidth,
-        collapseClass: '',
+        defaultCollapsed: device.isMobile,
+        collapsed: device.isMobile,
+        collapsedWidth: device.isMobile ? 0 : defaultCollapsedWidth,
+        collapseClass: device.isMobile ? 'mobile-layout-sider' : '',
         init: true,
     })
 
@@ -53,7 +55,6 @@ const useIshtarLayout = () => {
     onBeforeUnmount(() => {
         window.removeEventListener('resize', onResize)
     })
-
 
     return {
         sider,

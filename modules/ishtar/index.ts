@@ -20,48 +20,42 @@ export default defineNuxtModule({
         },
     },
     async setup(options, nuxt) {
-        await installModule('@vueuse/nuxt')
-        await installModule('nuxt-icon')
-        await installModule('arco-design-nuxt-module', {
-            icons: false,
-            importStyle: false,
-        })
-
-        nuxt.hook('pages:extend', (pages) => {
-            const pageDir = nuxt.options.rootDir + '/pages/'
-            const start = pageDir.length
-            function setName(items: NuxtPage[]) {
-                for (const page of items) {
-                    const end = page.file!.length - 4
-                    const name = page.file!.substring(start, end).replaceAll('/', '+')
-                    page.name = name
-                    if (page.children) {
-                        setName(page.children)
-                    }
-                }
-            }
-            setName(pages)
-        })
-
-        // addPlugin({
-        //     src: resolve('runtime/plugins/arco.ts'),
+        //
+        // nuxt.hook('pages:extend', (pages) => {
+        //     const pageDir = nuxt.options.rootDir + '/pages/'
+        //     const start = pageDir.length
+        //     function setName(items: NuxtPage[]) {
+        //         for (const page of items) {
+        //             const end = page.file!.length - 4
+        //             const name = page.file!.substring(start, end).replaceAll('/', '+')
+        //             page.name = name
+        //             if (page.children) {
+        //                 setName(page.children)
+        //             }
+        //         }
+        //     }
+        //     setName(pages)
         // })
-
-        addImportsDir(resolve('./runtime/composables'))
-
-        await addComponentsDir({
-            path: resolve('./runtime/components'),
-            pathPrefix: false,
-            prefix: 'Ishtar',
-            global: true,
-        })
-
-        addLayout(
-            {
-                src: resolve('runtime/layouts/ishtar.vue'),
-                filename: 'ishtar.vue',
-            },
-            'ishtar',
-        )
+        // addPlugin({
+        //     src: resolve('runtime/plugins/device.ts'),
+        // })
+        // addImportsDir(resolve('./runtime/stores'))
+        //
+        // addImportsDir(resolve('./runtime/composables'))
+        //
+        // await addComponentsDir({
+        //     path: resolve('./runtime/components'),
+        //     pathPrefix: false,
+        //     prefix: 'Ishtar',
+        //     global: true,
+        // })
+        //
+        // addLayout(
+        //     {
+        //         src: resolve('runtime/layouts/ishtar.vue'),
+        //         filename: 'ishtar.vue',
+        //     },
+        //     'ishtar',
+        // )
     },
 })

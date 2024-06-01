@@ -4,15 +4,16 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "nuxt preview --host",
     "postinstall": "nuxt prepare",
     "fmt": "prettier --write ."
   },
   "dependencies": {
-    "@arco-design/web-vue": "^2.55.2",
-    "@vueuse/core": "^10.9.0",
+    "@element-plus/icons-vue": "^2.3.1",
+    "@vueuse/core": "^10.10.0",
+    "element-plus": "^2.7.3",
     "mockjs": "^1.1.0",
     "nuxt": "^3.11.2",
     "pinia": "^2.1.7",
@@ -20,14 +21,15 @@
     "vue-router": "^4.3.2"
   },
   "devDependencies": {
+    "@element-plus/nuxt": "^1.0.9",
+    "@nuxtjs/color-mode": "^3.4.1",
+    "@nuxtjs/device": "^3.1.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@pinia/nuxt": "^0.5.1",
     "@types/mockjs": "^1.0.10",
-    "@vueuse/nuxt": "^10.9.0",
-    "arco-design-nuxt-module": "^0.1.0",
-    "nuxt-icon": "^0.6.10",
+    "@vueuse/nuxt": "^10.10.0",
     "prettier": "^3.2.5",
     "prettier-plugin-rational-order": "^1.0.3",
-    "sass": "^1.77.2"
+    "sass": "^1.77.4"
   }
 }
