@@ -1,11 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-    srcDir: 'src/',
+    srcDir: 'app/',
     devtools: {enabled: false},
     modules: [
         '@vueuse/nuxt',
         '@nuxtjs/device',
+        'nuxt-icon',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
         '@nuxtjs/color-mode',
@@ -37,7 +38,7 @@ export default defineNuxtConfig({
             ],
             // script: [
             //     {
-            //         src: 'https://cdn.jsdelivr.net/npm/eruda',
+            //         app: 'https://cdn.jsdelivr.net/npm/eruda',
             //         type: 'text/javascript',
             //     },
             //     { innerHTML: 'eruda.init()' },
