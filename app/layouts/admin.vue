@@ -29,7 +29,9 @@
             <LayoutHeaderUser></LayoutHeaderUser>
         </header>
         <main>
-            <slot></slot>
+            <ClientOnly>
+                <slot></slot>
+            </ClientOnly>
         </main>
     </article>
 </template>
@@ -61,8 +63,8 @@ body {
 
     aside {
         display: flex;
-        flex-direction: column;
         flex-shrink: 0;
+        flex-direction: column;
         box-sizing: border-box;
         width: 300px;
         height: 100%;
@@ -95,15 +97,18 @@ body {
             cursor: pointer;
         }
     }
+    
     article {
+        flex: 1;
         display: flex;
+        width: 0;
         flex-direction: column;
-        width: 100%;
 
         main {
             flex: 1;
             box-sizing: border-box;
             height: 100%;
+            width: 100%;
             padding: 20px;
             background-color: var(--el-bg-color-page);
         }

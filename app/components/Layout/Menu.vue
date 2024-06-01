@@ -14,11 +14,26 @@ import type {RouteRecordRaw} from 'vue-router'
 
 const router = useRouter()
 
+// 给路由排序，按照order值，由小到大
+const sortRoutes = (routes: RouteRecordRaw[]) => {
+    routes.sort((a, b) => (a.meta?.order as number ?? 0) - (b.meta?.order as number ?? 0))
+    
+    // 递归地对每个路由的children进行排序
+    routes.forEach(route => {
+        if (route.children && route.children.length) {
+            sortRoutes(route.children);
+        }
+    })
+}
+
 // 指定目录下的页面才会生成菜单
 const menuPath = '/admin'
 
 const menus = computed<RouteRecordRaw[]>(() => {
-    return router.options.routes.find((value) => value.path === menuPath)?.children ?? []
+    const rs = router.options.routes.find((value) => value.path === menuPath)?.children ?? []
+    const frs = rs.filter(value => value.meta?.hide !== true)
+    sortRoutes(frs)
+    return frs
 })
 </script>
 

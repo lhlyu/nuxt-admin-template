@@ -3,7 +3,7 @@
 <script setup lang="ts">
 definePageMeta({
     title: '页面创建',
-    icon: 'ep:document',
+    icon: 'ep:document-add',
 })
 </script>
 
