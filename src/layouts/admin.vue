@@ -60,6 +60,7 @@ body {
 
     aside {
         display: flex;
+        flex-shrink: 0;
         flex-direction: column;
         box-sizing: border-box;
         width: 300px;

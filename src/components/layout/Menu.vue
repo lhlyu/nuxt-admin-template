@@ -23,7 +23,17 @@
 </template>
 
 <script setup lang="ts">
+import type {RouteRecordRaw} from 'vue-router'
 import {Location, Setting} from '@element-plus/icons-vue'
+
+const router = useRouter()
+
+// 指定目录下的页面才会生成菜单
+const basePath = '/admin'
+
+const menus = computed<RouteRecordRaw[]>(() => {
+    return router.options.routes.find((value) => value.path === basePath)?.children ?? []
+})
 </script>
 
 <style lang="scss">
