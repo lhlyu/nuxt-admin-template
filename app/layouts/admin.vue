@@ -63,8 +63,8 @@ body {
 
     aside {
         display: flex;
-        flex-shrink: 0;
         flex-direction: column;
+        flex-shrink: 0;
         box-sizing: border-box;
         width: 300px;
         height: 100%;
@@ -97,19 +97,20 @@ body {
             cursor: pointer;
         }
     }
-    
+
     article {
-        flex: 1;
         display: flex;
-        width: 0;
+        flex: 1;
         flex-direction: column;
+        width: 0;
 
         main {
             flex: 1;
             box-sizing: border-box;
-            height: 100%;
             width: 100%;
+            height: 100%;
             padding: 20px;
+            overflow: auto;
             background-color: var(--el-bg-color-page);
         }
     }

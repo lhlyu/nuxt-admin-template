@@ -13,7 +13,11 @@
                 <template #dropdown>
                     <el-dropdown-menu>
                         <el-dropdown-item :icon="Setting">设置</el-dropdown-item>
-                        <el-dropdown-item :icon="SwitchButton" @click="logout">退出</el-dropdown-item>
+                        <el-dropdown-item
+                            :icon="SwitchButton"
+                            @click="logout"
+                            >退出</el-dropdown-item
+                        >
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -22,10 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import { Setting, SwitchButton } from '@element-plus/icons-vue'
-const logout = async () => {
-    await navigateTo('/')
-}
+import {Setting, SwitchButton} from '@element-plus/icons-vue'
+
+const {logout} = useLogin()
 </script>
 
 <style></style>

@@ -1,43 +1,92 @@
 <template>
-    <el-card shadow="never">
-        <el-form :inline="true">
-            <el-form-item label="Approved by">
-                <el-input placeholder="Approved by" clearable />
-            </el-form-item>
-            <el-form-item label="Approved by">
-                <el-input placeholder="Approved by" clearable />
-            </el-form-item>
-            <el-form-item label="Approved by">
-                <el-input placeholder="Approved by" clearable />
-            </el-form-item>
-            <el-form-item label="Approved by">
-                <el-input placeholder="Approved by" clearable />
-            </el-form-item>
-            <el-form-item label="Activity zone">
-                <el-select
-                    placeholder="Activity zone"
-                    clearable
-                >
-                    <el-option label="Zone one" value="shanghai" />
-                    <el-option label="Zone two" value="beijing" />
-                </el-select>
-            </el-form-item>
-            <el-form-item label="Activity time">
-                <el-date-picker
-                    type="date"
-                    placeholder="Pick a date"
-                    clearable
-                />
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary">Query</el-button>
-            </el-form-item>
+    <el-card
+        shadow="never"
+        class="v-gap"
+    >
+        <el-form inline>
+            <el-space
+                wrap
+                :fill="$device.isMobile"
+                size="large"
+            >
+                <el-form-item label="Approved by">
+                    <el-input
+                        placeholder="Approved by"
+                        clearable
+                    />
+                </el-form-item>
+                <el-form-item label="Approved by">
+                    <el-input
+                        placeholder="Approved by"
+                        clearable
+                    />
+                </el-form-item>
+                <el-form-item label="Approved by">
+                    <el-input
+                        placeholder="Approved by"
+                        clearable
+                    />
+                </el-form-item>
+                <el-form-item label="Approved by">
+                    <el-input
+                        placeholder="Approved by"
+                        clearable
+                    />
+                </el-form-item>
+                <el-form-item label="Activity zone">
+                    <el-select
+                        placeholder="Activity zone"
+                        clearable
+                    >
+                        <el-option
+                            label="Zone one"
+                            value="shanghai"
+                        />
+                        <el-option
+                            label="Zone two"
+                            value="beijing"
+                        />
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="Activity time">
+                    <el-date-picker
+                        type="date"
+                        placeholder="Pick a date"
+                        clearable
+                    />
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary">Query</el-button>
+                </el-form-item>
+            </el-space>
         </el-form>
-        <el-table :data="tableData" border stripe>
-            <el-table-column prop="date" label="Date" />
-            <el-table-column prop="name" label="Name" />
-            <el-table-column prop="address" label="Address" />
+    </el-card>
+    <el-card shadow="never">
+        <div class="toolbar"></div>
+        <el-table
+            class="v-gap"
+            :data="tableData"
+            border
+            stripe
+        >
+            <el-table-column
+                prop="date"
+                label="Date"
+            />
+            <el-table-column
+                prop="name"
+                label="Name"
+            />
+            <el-table-column
+                prop="address"
+                label="Address"
+            />
         </el-table>
+        <el-pagination
+            background
+            layout="prev, pager, next"
+            :total="1000"
+        />
     </el-card>
 </template>
 
@@ -70,4 +119,11 @@ const tableData = [
 ]
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.v-gap {
+    margin-bottom: 10px;
+}
+.el-form-item {
+    margin: 0;
+}
+</style>

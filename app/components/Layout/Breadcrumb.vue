@@ -1,5 +1,8 @@
 <template>
-    <el-text :line-clamp="1" truncated>
+    <el-text
+        :line-clamp="1"
+        truncated
+    >
         <el-breadcrumb>
             <el-breadcrumb-item
                 v-for="v in $route.matched.slice(1)"
@@ -10,7 +13,6 @@
     </el-text>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style></style>
