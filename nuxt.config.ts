@@ -46,6 +46,11 @@ export default defineNuxtConfig({
         },
         rootTag: 'body',
     },
+    nitro: {
+        prerender: {
+            routes: ['/', '/admin'],
+        },
+    },
     vite: {
         vueJsx: {},
     },
