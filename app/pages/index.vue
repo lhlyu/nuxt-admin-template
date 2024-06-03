@@ -1,46 +1,21 @@
 <template>
     <Title>登录</Title>
     <main>
-        <el-form
-            class="login"
-            label-width="auto"
-            label-position="top"
-            size="large"
-            :model="loginForm"
-        >
+        <el-form class="login" label-width="auto" label-position="top" size="large" :model="loginForm">
             <el-form-item>
                 <h1>管理系统</h1>
             </el-form-item>
             <el-form-item label="账号">
-                <el-input
-                    autocomplete="off"
-                    clearable
-                    v-model="loginForm.account"
-                />
+                <el-input autocomplete="off" clearable v-model="loginForm.account" />
             </el-form-item>
             <el-form-item label="密码">
-                <el-input
-                    type="password"
-                    clearable
-                    autocomplete="off"
-                    show-password
-                    v-model="loginForm.password"
-                />
+                <el-input type="password" clearable autocomplete="off" show-password v-model="loginForm.password" />
             </el-form-item>
             <el-form-item>
-                <el-checkbox
-                    label="记住密码"
-                    v-model="loginForm.remember"
-                />
+                <el-checkbox label="记住密码" v-model="loginForm.remember" />
             </el-form-item>
             <el-form-item>
-                <el-button
-                    style="width: 100%"
-                    type="primary"
-                    @click="login"
-                >
-                    登录
-                </el-button>
+                <el-button style="width: 100%" type="primary" @click="login"> 登录 </el-button>
             </el-form-item>
         </el-form>
     </main>
@@ -60,6 +35,7 @@ main {
     height: 100%;
     padding: 20px;
     background-color: var(--el-bg-color-page);
+    user-select: none;
 
     .login {
         width: 100%;

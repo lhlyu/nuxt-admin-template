@@ -1,18 +1,12 @@
 <template>
-    <Transition
-        name="rotate"
-        mode="out-in"
-    >
+    <Transition name="rotate" mode="out-in">
         <el-icon
             v-if="$colorMode.value === 'dark'"
             @click="$colorMode.preference = $colorMode.value === 'dark' ? 'light' : 'dark'"
         >
             <Sunny />
         </el-icon>
-        <el-icon
-            v-else
-            @click="$colorMode.preference = $colorMode.value === 'dark' ? 'light' : 'dark'"
-        >
+        <el-icon v-else @click="$colorMode.preference = $colorMode.value === 'dark' ? 'light' : 'dark'">
             <Moon />
         </el-icon>
     </Transition>

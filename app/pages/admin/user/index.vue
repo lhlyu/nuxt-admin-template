@@ -1,129 +1,97 @@
 <template>
-    <el-card
-        shadow="never"
-        class="v-gap"
-    >
-        <el-form inline>
-            <el-space
-                wrap
-                :fill="$device.isMobile"
-                size="large"
-            >
-                <el-form-item label="Approved by">
-                    <el-input
-                        placeholder="Approved by"
-                        clearable
-                    />
-                </el-form-item>
-                <el-form-item label="Approved by">
-                    <el-input
-                        placeholder="Approved by"
-                        clearable
-                    />
-                </el-form-item>
-                <el-form-item label="Approved by">
-                    <el-input
-                        placeholder="Approved by"
-                        clearable
-                    />
-                </el-form-item>
-                <el-form-item label="Approved by">
-                    <el-input
-                        placeholder="Approved by"
-                        clearable
-                    />
-                </el-form-item>
-                <el-form-item label="Activity zone">
-                    <el-select
-                        placeholder="Activity zone"
-                        clearable
-                    >
-                        <el-option
-                            label="Zone one"
-                            value="shanghai"
-                        />
-                        <el-option
-                            label="Zone two"
-                            value="beijing"
-                        />
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="Activity time">
-                    <el-date-picker
-                        type="date"
-                        placeholder="Pick a date"
-                        clearable
-                    />
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary">Query</el-button>
-                </el-form-item>
-            </el-space>
-        </el-form>
-    </el-card>
-    <el-card shadow="never">
-        <div class="toolbar"></div>
-        <el-table
-            class="v-gap"
-            :data="tableData"
-            border
-            stripe
-        >
-            <el-table-column
-                prop="date"
-                label="Date"
+    <section :class="{fit: device.isMobile}">
+        <el-card shadow="never">
+            <el-form inline :model="query">
+                <el-space wrap :fill="device.isMobile" size="large">
+                    <el-form-item label="名字">
+                        <el-input clearable style="width: 200px" v-model="query.name" />
+                    </el-form-item>
+                    <el-form-item label="性别">
+                        <el-select style="width: 200px" v-model="query.gender">
+                            <el-option label="全部" :value="0" />
+                            <el-option label="男" :value="1" />
+                            <el-option label="女" :value="2" />
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary">搜索</el-button>
+                        <el-button>重置</el-button>
+                    </el-form-item>
+                </el-space>
+            </el-form>
+        </el-card>
+        <el-card shadow="never">
+            <div class="toolbar v-gap">
+                <el-space>
+                    <el-button type="primary" :icon="Plus">新增</el-button>
+                    <el-button type="danger" :icon="Delete">删除</el-button>
+                </el-space>
+                <el-button-group class="ml-4">
+                    <el-button :icon="Search" />
+                    <el-button :icon="Refresh" />
+                </el-button-group>
+            </div>
+            <el-table class="v-gap" :data="data?.data?.list" border stripe>
+                <el-table-column prop="id" label="ID" />
+                <el-table-column prop="name" label="名字" />
+                <el-table-column prop="gender" label="性别" />
+            </el-table>
+            <el-pagination
+                background
+                layout="prev, pager, next"
+                :total="data?.data?.page?.total"
+                @change="pageChange"
             />
-            <el-table-column
-                prop="name"
-                label="Name"
-            />
-            <el-table-column
-                prop="address"
-                label="Address"
-            />
-        </el-table>
-        <el-pagination
-            background
-            layout="prev, pager, next"
-            :total="1000"
-        />
-    </el-card>
+        </el-card>
+    </section>
 </template>
 
 <script setup lang="ts">
+import {Plus, Delete, Search, Refresh} from '@element-plus/icons-vue'
+
 definePageMeta({
     title: '用户列表',
     icon: 'ep:memo',
 })
-const tableData = [
-    {
-        date: '2016-05-03',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-02',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-04',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-    {
-        date: '2016-05-01',
-        name: 'Tom',
-        address: 'No. 189, Grove St, Los Angeles',
-    },
-]
+
+const device = useDevice()
+
+const query = reactive({
+    current: 1,
+    size: 10,
+    name: '',
+    gender: 0,
+})
+
+const {data, pending, error, refresh} = await useFetch('/api/user/search', {
+    query: query,
+})
+
+const pageChange = (currentPage: number, pageSize: number) => {
+    query.current = currentPage
+    query.size = pageSize
+}
 </script>
 
 <style scoped lang="scss">
 .v-gap {
     margin-bottom: 10px;
 }
+.el-card:not(:last-child) {
+    margin-bottom: 10px;
+}
 .el-form-item {
     margin: 0;
+}
+.el-pagination {
+    justify-content: center;
+}
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fit {
+    width: fit-content;
 }
 </style>

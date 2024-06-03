@@ -1,19 +1,9 @@
 <template>
     <Title>{{ error?.statusCode }}</Title>
     <main>
-        <el-result
-            icon="error"
-            :title="error?.statusCode + ''"
-            :sub-title="error?.message"
-        >
+        <el-result icon="error" :title="error?.statusCode + ''" :sub-title="error?.message">
             <template #extra>
-                <el-button
-                    type="primary"
-                    tag="a"
-                    :href="appConfig.login"
-                    rel="noopener noreferrer"
-                    >返回</el-button
-                >
+                <el-button type="primary" tag="a" :href="appConfig.login" rel="noopener noreferrer">返回</el-button>
             </template>
         </el-result>
     </main>

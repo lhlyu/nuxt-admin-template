@@ -1,15 +1,9 @@
 <template>
     <Title>{{ $route.meta.title ?? '管理后台' }}</Title>
     <Transition name="slide">
-        <aside
-            v-show="!isCollapse"
-            :class="{'aside-mobile': device.isMobile}"
-        >
+        <aside v-show="!isCollapse" :class="{'aside-mobile': device.isMobile}">
             <LayoutHeaderLogo>
-                <LayoutSidebarButton
-                    v-show="!isCollapse"
-                    @click="isCollapse = !isCollapse"
-                ></LayoutSidebarButton>
+                <LayoutSidebarButton v-show="!isCollapse" @click="isCollapse = !isCollapse"></LayoutSidebarButton>
             </LayoutHeaderLogo>
             <el-scrollbar>
                 <LayoutMenu></LayoutMenu>
@@ -19,10 +13,7 @@
     <article>
         <header>
             <el-space size="large">
-                <LayoutSidebarButton
-                    v-if="isCollapse"
-                    @click="isCollapse = !isCollapse"
-                ></LayoutSidebarButton>
+                <LayoutSidebarButton v-if="isCollapse" @click="isCollapse = !isCollapse"></LayoutSidebarButton>
                 <LayoutBreadcrumb v-if="!device.isMobile"></LayoutBreadcrumb>
                 <div v-else></div>
             </el-space>

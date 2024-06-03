@@ -1,12 +1,6 @@
 <template>
-    <template
-        v-for="v in menus"
-        :key="v.name"
-    >
-        <el-sub-menu
-            v-if="v.children?.length"
-            :index="v.name as string"
-        >
+    <template v-for="v in menus" :key="v.name">
+        <el-sub-menu v-if="v.children?.length" :index="v.name as string">
             <template #title>
                 <el-icon v-if="v.meta?.icon">
                     <Icon :name="v.meta?.icon as string"></Icon>
@@ -15,11 +9,7 @@
             </template>
             <LayoutMenuItem :menus="v.children"></LayoutMenuItem>
         </el-sub-menu>
-        <el-menu-item
-            v-else
-            :index="v.name as string"
-            @click="() => jump(v)"
-        >
+        <el-menu-item v-else :index="v.name as string" @click="() => jump(v)">
             <el-icon v-if="v.meta?.icon">
                 <Icon :name="v.meta?.icon as string"></Icon>
             </el-icon>

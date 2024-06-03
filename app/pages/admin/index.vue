@@ -1,8 +1,5 @@
 <template>
-    <el-image
-        style="width: 200px"
-        src="/logo.webp"
-    />
+    <el-image style="width: 200px" src="/logo.webp" />
 </template>
 
 <script setup lang="ts">
