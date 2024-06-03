@@ -22,6 +22,7 @@
         <main>
             <ClientOnly>
                 <slot></slot>
+                <el-backtop target="main" />
             </ClientOnly>
         </main>
     </article>

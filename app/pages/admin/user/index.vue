@@ -14,7 +14,7 @@
                         </el-select>
                     </el-form-item>
                     <el-form-item>
-                        <el-button type="primary">搜索</el-button>
+                        <el-button type="primary" @click="search">搜索</el-button>
                         <el-button>重置</el-button>
                     </el-form-item>
                 </el-space>
@@ -40,6 +40,8 @@
                 background
                 layout="prev, pager, next"
                 :total="data?.data?.page?.total"
+                v-model:page-size="query.size"
+                v-model:current-page="query.current"
                 @change="pageChange"
             />
         </el-card>
@@ -63,14 +65,25 @@ const query = reactive({
     gender: 0,
 })
 
-const {data, pending, error, refresh} = await useFetch('/api/user/search', {
+const {data, execute, pending, error, refresh} = await useFetch('/api/user/search', {
     query: query,
+    immediate: false,
+    watch: false,
 })
 
-const pageChange = (currentPage: number, pageSize: number) => {
-    query.current = currentPage
-    query.size = pageSize
+onBeforeMount(async () => {
+    await execute()
+})
+
+const search = async () => {
+    query.current = 1
+    await execute()
 }
+
+const pageChange = async () => {
+    await execute()
+}
+
 </script>
 
 <style scoped lang="scss">

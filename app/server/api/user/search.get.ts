@@ -44,7 +44,7 @@ export default defineEventHandler<SearchUserResponse>((event) => {
         current: Number(q.current ?? 1),
         size: Number(q.size ?? 10),
         name: q.name ?? '',
-        gender: q.gender ?? 0,
+        gender: Number(q.gender ?? 0),
     }
 
     const newUsers = users.filter((v) => {
