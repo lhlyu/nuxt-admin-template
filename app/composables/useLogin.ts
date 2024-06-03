@@ -1,7 +1,7 @@
 const useLogin = () => {
     const loginForm = reactive({
-        account: '',
-        password: '',
+        account: 'admin',
+        password: 'admin',
         remember: false,
     })
 
