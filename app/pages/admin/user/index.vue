@@ -39,7 +39,7 @@
             <el-pagination
                 background
                 layout="prev, pager, next"
-                :total="data?.data?.page?.total"
+                :total="data?.data?.page?.total ?? 0"
                 v-model:page-size="query.size"
                 v-model:current-page="query.current"
                 @change="pageChange"

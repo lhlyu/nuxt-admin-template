@@ -38,7 +38,7 @@ export default defineNuxtConfig({
             ],
             // script: [
             //     {
-            //         app: 'https://cdn.jsdelivr.net/npm/eruda',
+            //         src: 'https://cdn.jsdelivr.net/npm/eruda',
             //         type: 'text/javascript',
             //     },
             //     { innerHTML: 'eruda.init()' },
