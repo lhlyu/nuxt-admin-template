@@ -19,6 +19,9 @@
             </el-space>
             <LayoutHeaderUser></LayoutHeaderUser>
         </header>
+        <nav>
+            <LayoutTabsbar></LayoutTabsbar>
+        </nav>
         <main>
             <ClientOnly>
                 <slot></slot>
@@ -95,6 +98,15 @@ body {
         flex: 1;
         flex-direction: column;
         width: 0;
+        
+        nav {
+            box-sizing: border-box;
+            flex-shrink: 0;
+            height: 40px;
+            background-color: var(--el-bg-color-page);
+            border-bottom: var(--el-border);
+            user-select: none;
+        }
 
         main {
             flex: 1;

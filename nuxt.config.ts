@@ -46,9 +46,6 @@ export default defineNuxtConfig({
         },
         rootTag: 'body',
     },
-    vite: {
-        vueJsx: {},
-    },
     imports: {
         dirs: ['stores'],
     },

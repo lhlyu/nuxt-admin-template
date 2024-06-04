@@ -34,7 +34,11 @@
             <el-table class="v-gap" :data="data?.data?.list" border stripe>
                 <el-table-column prop="id" label="ID" />
                 <el-table-column prop="name" label="名字" />
-                <el-table-column prop="gender" label="性别" />
+                <el-table-column prop="gender" label="性别" >
+                    <template #default="scope">
+                        {{ scope.row.gender === 1 ? '男' : '女' }}
+                    </template>
+                </el-table-column>
             </el-table>
             <el-pagination
                 background
