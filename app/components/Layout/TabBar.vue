@@ -1,11 +1,12 @@
 <template>
-    <div class="tabs-bar">
+    <div class="tab-bar">
         <div class="left">
             <el-button link :icon="ArrowLeft" @click="handleArrowScroll()" />
         </div>
         <div class="center" :id="id" >
-            <el-button type="primary" plain>菜单</el-button>
-            <el-button plain v-for="v in 30" :key="v">菜单{{ v }}</el-button>
+            <el-button v-for="t in tabs" :key="t.name" :type="t.name === active ? 'primary' : ''" :plain="t.name !== active" @click="switchPage(t.path)">
+                {{ t.title }}
+            </el-button>
         </div>
         <div class="right" ref="center">
             <el-button link :icon="ArrowRight" @click="handleArrowScroll(false)" />
@@ -16,9 +17,9 @@
                     <el-button link :icon="ArrowDown" />
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item>Action 1</el-dropdown-item>
-                            <el-dropdown-item>Action 2</el-dropdown-item>
-                            <el-dropdown-item>Action 3</el-dropdown-item>
+                            <el-dropdown-item>关闭其他标签页</el-dropdown-item>
+                            <el-dropdown-item>关闭左边标签页</el-dropdown-item>
+                            <el-dropdown-item>关闭右边标签页</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -53,10 +54,38 @@ const handleArrowScroll = (prev: boolean = true) => {
     }
 }
 
+const route = useRoute()
+
+const tabs = useState('tabs', () => [{
+    name: route.name as string,
+    icon: route.meta?.icon as string | undefined,
+    title: (route.meta?.title ?? route.name) as string,
+    path: route.fullPath
+}])
+
+const active = useState('tab-active', () => route.name as string)
+
+
+onBeforeRouteUpdate((to, from) => {
+    active.value = to.name as string
+    if (tabs.value.some((item) => item.name === to.name)) {
+        return
+    }
+    tabs.value.push({
+        name: to.name as string,
+        icon: to.meta?.icon as string | undefined,
+        title: (to.meta?.title ?? to.name) as string,
+        path: route.fullPath
+    })
+})
+
+const switchPage = (path: string) => {
+    navigateTo(path)
+}
 </script>
 
 <style scoped lang="scss">
-.tabs-bar {
+.tab-bar {
     display: flex;
     align-items: center;
     width: 100%;

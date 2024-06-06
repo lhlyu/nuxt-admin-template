@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     },
     css: ['element-plus/theme-chalk/dark/css-vars.css'],
     app: {
+        keepalive: true,
         head: {
             htmlAttrs: {
                 lang: 'zh-cmn-Hans',

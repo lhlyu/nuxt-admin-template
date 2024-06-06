@@ -20,10 +20,9 @@
             <LayoutHeaderUser></LayoutHeaderUser>
         </header>
         <nav>
-            <LayoutTabsbar></LayoutTabsbar>
+            <LayoutTabBar></LayoutTabBar>
         </nav>
         <main>
-            {{ $route.name }}
             <ClientOnly>
                 <slot></slot>
                 <el-backtop target="main" />

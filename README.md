@@ -17,6 +17,10 @@ definePageMeta({
 })
 ```
 
+## 问题
+
+- Nuxt3 keepalive存在问题 [27401](https://github.com/nuxt/nuxt/issues/27401)，嵌套路由导致实现选择性缓存很难
+
 
 ## 参考
 
