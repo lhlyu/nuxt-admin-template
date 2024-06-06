@@ -4,9 +4,9 @@
             <el-button link :icon="ArrowLeft" @click="handleArrowScroll()" />
         </div>
         <div class="center" :id="id" >
-            <el-button v-for="t in tabs" :key="t.name" :type="t.name === active ? 'primary' : ''" :plain="t.name !== active" @click="switchPage(t.path)">
+            <el-tag v-for="t in tabs" :key="t.name" closable :id="t.path" :effect="t.name === active ? 'dark' : 'plain'" type="primary" @click="switchTab(t.path)" @close="closeTab(t.name)">
                 {{ t.title }}
-            </el-button>
+            </el-tag>
         </div>
         <div class="right" ref="center">
             <el-button link :icon="ArrowRight" @click="handleArrowScroll(false)" />
@@ -17,9 +17,9 @@
                     <el-button link :icon="ArrowDown" />
                     <template #dropdown>
                         <el-dropdown-menu>
-                            <el-dropdown-item>关闭其他标签页</el-dropdown-item>
-                            <el-dropdown-item>关闭左边标签页</el-dropdown-item>
-                            <el-dropdown-item>关闭右边标签页</el-dropdown-item>
+                            <el-dropdown-item @click="closeOtherTabs">关闭其他标签页</el-dropdown-item>
+                            <el-dropdown-item @click="closeLeftTabs">关闭左边标签页</el-dropdown-item>
+                            <el-dropdown-item @click="closeRightTabs">关闭右边标签页</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -67,6 +67,10 @@ const active = useState('tab-active', () => route.name as string)
 
 
 onBeforeRouteUpdate((to, from) => {
+    const t = setTimeout(() => {
+        document.getElementById(to.fullPath)?.scrollIntoView({behavior: "smooth", inline: 'center'})
+        clearTimeout(t)
+    }, 100)
     active.value = to.name as string
     if (tabs.value.some((item) => item.name === to.name)) {
         return
@@ -79,8 +83,33 @@ onBeforeRouteUpdate((to, from) => {
     })
 })
 
-const switchPage = (path: string) => {
-    navigateTo(path)
+const switchTab = async (path: string) => {
+    await navigateTo(path)
+}
+
+const closeTab = async (name: string) => {
+    tabs.value = tabs.value.filter((item) => item.name !== name)
+    if (active.value === name) {
+        if (tabs.value.length === 0) {
+            return
+        }
+        await switchTab(tabs.value.at(0).path)
+    }
+}
+
+const closeOtherTabs = () => {
+    const v = tabs.value.find(value => value.name === active.value)
+    tabs.value = v ? [v] : []
+}
+
+const closeLeftTabs = () => {
+    const index = tabs.value.findIndex(value => value.name === active.value)
+    tabs.value = tabs.value.slice(index)
+}
+
+const closeRightTabs = () => {
+    const index = tabs.value.findIndex(value => value.name === active.value)
+    tabs.value = tabs.value.slice(0, index + 1)
 }
 </script>
 
@@ -122,11 +151,12 @@ const switchPage = (path: string) => {
             display: none;
         }
         
-        .el-button {
+        .el-tag {
             scroll-snap-align: center;
+            cursor: pointer;
         }
         
-        .el-button:not(:first-child) {
+        .el-tag:not(:first-child) {
             margin-left: 8px;
         }
     }
