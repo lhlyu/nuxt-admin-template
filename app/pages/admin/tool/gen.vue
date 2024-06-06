@@ -4,11 +4,11 @@
 
 <script setup lang="ts">
 definePageMeta({
-    title: '页面创建',
-    icon: 'ep:document-add',
+    title: '表单生成',
+    icon: 'ep:brush',
 })
 
-const v = ref('页面创建')
+const v = ref('表单生成')
 </script>
 
 <style scoped></style>

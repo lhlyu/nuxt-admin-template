@@ -18,7 +18,7 @@ const router = useRouter()
 const sortRoutes = (routes: RouteRecordRaw[]) => {
     routes.sort((a, b) => ((a.meta?.order as number) ?? 0) - ((b.meta?.order as number) ?? 0))
 
-    // 递归地对每个路由的children进行排序
+    // 递归对每个路由的children进行排序
     routes.forEach((route) => {
         if (route.children && route.children.length) {
             sortRoutes(route.children)

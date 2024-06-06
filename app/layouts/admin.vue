@@ -6,7 +6,7 @@
                 <LayoutSidebarButton v-show="!isCollapse" @click="isCollapse = !isCollapse"></LayoutSidebarButton>
             </LayoutHeaderLogo>
             <el-scrollbar>
-                <LayoutMenu></LayoutMenu>
+                <LayoutSideMenu></LayoutSideMenu>
             </el-scrollbar>
         </aside>
     </Transition>
@@ -23,6 +23,7 @@
             <LayoutTabsbar></LayoutTabsbar>
         </nav>
         <main>
+            {{ $route.name }}
             <ClientOnly>
                 <slot></slot>
                 <el-backtop target="main" />

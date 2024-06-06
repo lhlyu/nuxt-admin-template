@@ -30,3 +30,4 @@ definePageMeta({
 - [vue3-tabs-chrome](https://github.com/viewweiwu/vue3-tabs-chrome)
 - [epic-astronomy/Waterfalls](https://github.com/epic-astronomy/Waterfalls)
 - [zptime/nuxt-admin-template](https://github.com/zptime/nuxt-admin-template)
+- [vampirefan/admin3](https://github.com/vampirefan/admin3)

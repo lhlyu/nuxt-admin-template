@@ -1,6 +1,6 @@
 <template>
     <NuxtLayout name="admin">
-        <NuxtPage keepalive></NuxtPage>
+        <NuxtPage></NuxtPage>
     </NuxtLayout>
 </template>
 
