@@ -4,7 +4,7 @@
             <el-button link :icon="ArrowLeft" @click="handleArrowScroll()" />
         </div>
         <div class="center" :id="id" >
-            <el-tag v-for="t in tabs" :key="t.name" closable :id="t.path" :effect="t.name === active ? 'dark' : 'plain'" type="primary" @click="switchTab(t.path)" @close="closeTab(t.name)">
+            <el-tag v-for="t in tabs" :key="t.name" size="large" closable :id="t.path" :effect="t.name === active ? 'dark' : 'plain'" type="primary" @click="switchTab(t.path)" @close="closeTab(t.name)">
                 {{ t.title }}
             </el-tag>
         </div>
@@ -93,7 +93,7 @@ const closeTab = async (name: string) => {
         if (tabs.value.length === 0) {
             return
         }
-        await switchTab(tabs.value.at(0).path)
+        await switchTab(tabs.value[0].path)
     }
 }
 
@@ -154,6 +154,7 @@ const closeRightTabs = () => {
         .el-tag {
             scroll-snap-align: center;
             cursor: pointer;
+            height: 28px;
         }
         
         .el-tag:not(:first-child) {
