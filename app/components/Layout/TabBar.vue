@@ -87,10 +87,13 @@ const switchTab = async (path: string) => {
     await navigateTo(path)
 }
 
+const appConfig = useAppConfig()
+
 const closeTab = async (name: string) => {
     tabs.value = tabs.value.filter((item) => item.name !== name)
     if (active.value === name) {
         if (tabs.value.length === 0) {
+            await switchTab(appConfig.admin)
             return
         }
         await switchTab(tabs.value[0].path)
