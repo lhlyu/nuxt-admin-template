@@ -75,7 +75,7 @@ onBeforeRouteUpdate((to, from) => {
         name: to.name as string,
         icon: to.meta?.icon as string | undefined,
         title: (to.meta?.title ?? to.name) as string,
-        path: route.fullPath
+        path: to.fullPath
     })
 })
 
