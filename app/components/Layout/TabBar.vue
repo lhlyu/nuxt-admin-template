@@ -92,11 +92,20 @@ const appConfig = useAppConfig()
 const closeTab = async (name: string) => {
     tabs.value = tabs.value.filter((item) => item.name !== name)
     if (active.value === name) {
-        if (tabs.value.length === 0) {
-            await switchTab(appConfig.admin)
+        if (tabs.value.length > 0) {
+            await switchTab(tabs.value[0].path)
             return
         }
-        await switchTab(tabs.value[0].path)
+        if (route.fullPath === appConfig.admin) {
+            tabs.value = [{
+                name: route.name as string,
+                icon: route.meta?.icon as string | undefined,
+                title: (route.meta?.title ?? route.name) as string,
+                path: route.fullPath
+            }]
+            return
+        }
+        await switchTab(appConfig.admin)
     }
 }
 
