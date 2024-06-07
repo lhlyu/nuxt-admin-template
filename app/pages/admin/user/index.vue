@@ -76,16 +76,19 @@ const {data, execute, pending, error, refresh} = await useFetch('/api/user/searc
 })
 
 onBeforeMount(async () => {
-    await execute()
+    await refresh()
 })
 
 const search = async () => {
-    query.current = 1
-    await execute()
+   if (query.current > 1) {
+       query.current = 1
+       return
+   }
+   await refresh()
 }
 
 const pageChange = async () => {
-    await execute()
+    await refresh()
 }
 
 </script>
