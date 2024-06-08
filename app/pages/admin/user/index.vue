@@ -1,5 +1,5 @@
 <template>
-    <section :class="{fit: device.isMobile}">
+    <section :class="{fit: device.isMobile}" v-loading="pending">
         <el-card shadow="never">
             <el-form inline :model="query">
                 <el-space wrap :fill="device.isMobile" size="large">
