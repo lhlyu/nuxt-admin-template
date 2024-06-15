@@ -1,7 +1,7 @@
-import {createResolver, defineNuxtModule} from 'nuxt/kit'
-import type {NuxtPage} from '@nuxt/schema'
+import { createResolver, defineNuxtModule } from 'nuxt/kit'
+import type { NuxtPage } from '@nuxt/schema'
 
-const {resolve} = createResolver(import.meta.url)
+const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtModule({
     meta: {

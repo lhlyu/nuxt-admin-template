@@ -1,5 +1,5 @@
 <template>
-    <section :class="{fit: device.isMobile}" v-loading="pending">
+    <section :class="{ fit: device.isMobile }" v-loading="pending">
         <el-card shadow="never">
             <el-form inline :model="query">
                 <el-space wrap :fill="device.isMobile" size="large">
@@ -34,7 +34,7 @@
             <el-table class="v-gap" :data="data?.data?.list" border stripe>
                 <el-table-column prop="id" label="ID" />
                 <el-table-column prop="name" label="名字" />
-                <el-table-column prop="gender" label="性别" >
+                <el-table-column prop="gender" label="性别">
                     <template #default="scope">
                         {{ scope.row.gender === 1 ? '男' : '女' }}
                     </template>
@@ -53,7 +53,7 @@
 </template>
 
 <script setup lang="ts">
-import {Plus, Delete, Search, Refresh} from '@element-plus/icons-vue'
+import { Plus, Delete, Search, Refresh } from '@element-plus/icons-vue'
 
 definePageMeta({
     title: '用户列表',
@@ -69,7 +69,7 @@ const query = reactive({
     gender: 0,
 })
 
-const {data, execute, pending, error, refresh} = await useFetch('/api/user/search', {
+const { data, execute, pending, error, refresh } = await useFetch('/api/user/search', {
     query: query,
     immediate: false,
     watch: false,
@@ -80,17 +80,16 @@ onBeforeMount(async () => {
 })
 
 const search = async () => {
-   if (query.current > 1) {
-       query.current = 1
-       return
-   }
-   await refresh()
+    if (query.current > 1) {
+        query.current = 1
+        return
+    }
+    await refresh()
 }
 
 const pageChange = async () => {
     await refresh()
 }
-
 </script>
 
 <style scoped lang="scss">

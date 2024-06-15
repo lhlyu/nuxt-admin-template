@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import {Sunny, Moon} from '@element-plus/icons-vue'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 </script>
 
 <style scoped>

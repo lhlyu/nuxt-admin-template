@@ -1,3 +1,5 @@
+const tokenKey = 'nuxt-admin-template-token'
+
 const useLogin = () => {
     const loginForm = reactive({
         account: 'admin',
@@ -7,21 +9,23 @@ const useLogin = () => {
 
     const appConfig = useAppConfig()
 
-    const token = useCookie<string>('nuxt-admin-template-token')
+    const getToken = () => {
+        return useCookie(tokenKey).value
+    }
 
     const login = async () => {
-        token.value = +new Date() + ''
+        useCookie(tokenKey).value = +new Date() + ''
         await navigateTo(appConfig.admin)
     }
 
     const logout = async () => {
-        token.value = ''
+        useCookie(tokenKey).value = null
         await navigateTo(appConfig.login)
     }
 
     return {
         loginForm,
-        token,
+        getToken,
         login,
         logout,
     }

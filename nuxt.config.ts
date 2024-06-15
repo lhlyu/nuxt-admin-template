@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
     srcDir: 'app/',
-    devtools: {enabled: false},
+    devtools: { enabled: false },
     modules: [
         '@vueuse/nuxt',
         '@nuxtjs/device',

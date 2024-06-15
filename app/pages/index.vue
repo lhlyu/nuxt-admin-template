@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts" setup>
-const {loginForm, login} = useLogin()
+const { loginForm, login } = useLogin()
 </script>
 
 <style lang="scss" scoped>

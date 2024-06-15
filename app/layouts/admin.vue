@@ -1,7 +1,7 @@
 <template>
     <Title>{{ $route.meta.title ?? '管理后台' }}</Title>
     <Transition name="slide">
-        <aside v-show="!isCollapse" :class="{'aside-mobile': device.isMobile}">
+        <aside v-show="!isCollapse" :class="{ 'aside-mobile': device.isMobile }">
             <LayoutHeaderLogo>
                 <LayoutSidebarButton v-show="!isCollapse" @click="isCollapse = !isCollapse"></LayoutSidebarButton>
             </LayoutHeaderLogo>
@@ -98,10 +98,10 @@ body {
         flex: 1;
         flex-direction: column;
         width: 0;
-        
+
         nav {
-            box-sizing: border-box;
             flex-shrink: 0;
+            box-sizing: border-box;
             height: 40px;
             background-color: var(--el-bg-color-page);
             border-bottom: var(--el-border);

@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import {Setting, SwitchButton} from '@element-plus/icons-vue'
+import { Setting, SwitchButton } from '@element-plus/icons-vue'
 
-const {logout} = useLogin()
+const { logout } = useLogin()
 </script>
 
 <style></style>
