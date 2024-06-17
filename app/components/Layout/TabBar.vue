@@ -175,7 +175,7 @@ const closeRightTabs = () => {
         }
 
         .el-tag {
-            height: 28px;
+            height: 32px;
             cursor: pointer;
             scroll-snap-align: center;
         }

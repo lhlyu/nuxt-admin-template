@@ -15,7 +15,7 @@
     "@vueuse/core": "^10.11.0",
     "element-plus": "^2.7.5",
     "mockjs": "^1.1.0",
-    "nuxt": "^3.12.1",
+    "nuxt": "^3.12.2",
     "pinia": "^2.1.7",
     "vue": "^3.4.29",
     "vue-router": "^4.3.3"
