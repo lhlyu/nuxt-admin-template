@@ -1,7 +1,5 @@
 <template>
-    <NuxtLayout>
-        <NuxtPage></NuxtPage>
-    </NuxtLayout>
+    <NuxtLayout name="parent"></NuxtLayout>
 </template>
 
 <script setup lang="ts">
@@ -11,5 +9,3 @@ definePageMeta({
     order: 2,
 })
 </script>
-
-<style scoped></style>

@@ -24,7 +24,7 @@
         </nav>
         <main>
             <ClientOnly>
-                <slot></slot>
+                <NuxtPage></NuxtPage>
                 <el-backtop target="main" />
             </ClientOnly>
         </main>
