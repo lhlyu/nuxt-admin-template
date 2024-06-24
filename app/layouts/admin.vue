@@ -73,7 +73,7 @@ body {
         position: fixed;
         top: 0;
         left: 0;
-        z-index: 20;
+        z-index: 3000;
     }
 
     header {
