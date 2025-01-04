@@ -10,7 +10,7 @@ export default defineNuxtConfig({
         '@nuxtjs/device',
         '@nuxt/icon',
         '@pinia/nuxt',
-        '@pinia-plugin-persistedstate/nuxt',
+        'pinia-plugin-persistedstate/nuxt',
         '@nuxtjs/color-mode',
         '@element-plus/nuxt',
     ],
