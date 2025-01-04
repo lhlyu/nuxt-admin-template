@@ -23,10 +23,8 @@
             <LayoutTabBar></LayoutTabBar>
         </nav>
         <main>
-            <ClientOnly>
-                <NuxtPage></NuxtPage>
-                <el-backtop target="main" />
-            </ClientOnly>
+            <slot></slot>
+            <el-backtop target="main" />
         </main>
     </article>
 </template>

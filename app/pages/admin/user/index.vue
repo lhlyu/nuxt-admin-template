@@ -60,6 +60,14 @@ definePageMeta({
     icon: 'ep:memo',
 })
 
+onBeforeMount(() => {
+    console.log('✅装载:用户列表')
+})
+
+onBeforeUnmount(() => {
+    console.log('❌卸载:用户列表')
+})
+
 const device = useDevice()
 
 const query = reactive({

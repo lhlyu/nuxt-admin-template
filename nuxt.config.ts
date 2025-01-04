@@ -1,27 +1,35 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
+    compatibilityDate: '2025-01-04',
     srcDir: 'app/',
-    devtools: { enabled: false },
+    devtools: { enabled: true },
+
     modules: [
         '@vueuse/nuxt',
         '@nuxtjs/device',
-        'nuxt-icon',
+        '@nuxt/icon',
         '@pinia/nuxt',
         '@pinia-plugin-persistedstate/nuxt',
         '@nuxtjs/color-mode',
         '@element-plus/nuxt',
     ],
+
     elementPlus: {
         importStyle: false,
     },
+
     colorMode: {
         preference: 'light',
         fallback: 'light',
         classPrefix: '',
         classSuffix: '',
+        storage: 'cookie',
+        storageKey: 'nuxt-admin-color-mode',
     },
+
     css: ['element-plus/theme-chalk/dark/css-vars.css'],
+
     app: {
         keepalive: true,
         head: {
@@ -33,7 +41,7 @@ export default defineNuxtConfig({
             title: '管理系统',
             link: [
                 {
-                    href: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.7.3/index.min.css',
+                    href: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.7.7/index.min.css',
                     rel: 'stylesheet',
                 },
             ],
@@ -47,14 +55,17 @@ export default defineNuxtConfig({
         },
         rootTag: 'body',
     },
+
     imports: {
         dirs: ['stores'],
     },
+
     build: {
         analyze: {
             enabled: true,
         },
     },
+
     features: {
         inlineStyles: false,
     },

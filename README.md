@@ -35,3 +35,4 @@ definePageMeta({
 - [epic-astronomy/Waterfalls](https://github.com/epic-astronomy/Waterfalls)
 - [zptime/nuxt-admin-template](https://github.com/zptime/nuxt-admin-template)
 - [vampirefan/admin3](https://github.com/vampirefan/admin3)
+- [oliver225/thingsboard-ui-vue3](https://gitcode.com/oliver225/thingsboard-ui-vue3/overview)

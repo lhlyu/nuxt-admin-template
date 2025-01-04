@@ -15,7 +15,12 @@
                 @click="switchTab(t.path)"
                 @close="closeTab(t.name)"
             >
-                {{ t.title }}
+                <el-space :size="4">
+                    <el-icon v-if="t?.icon">
+                        <Icon :name="t?.icon as string"></Icon>
+                    </el-icon>
+                    <span>{{ t.title }}</span>
+                </el-space>
             </el-tag>
         </div>
         <div class="right" ref="center">
