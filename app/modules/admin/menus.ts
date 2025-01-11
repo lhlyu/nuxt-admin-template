@@ -121,18 +121,18 @@ const generateMenus = (root: string, pages: NuxtPage[]): string => {
             // 相对路径
             const relativePath = page.file!.slice(root.length)
 
-            const name = path.dirname(relativePath)
+            const dirname = path.dirname(relativePath)
 
-            const layer = calculateLayer(relativePath)
+            const layer = calculateLayer(dirname)
 
             const p: MenuItem = {
-                name: getName('d', name),
-                title: parent.title ?? name,
+                name: getName('d', dirname),
+                title: parent.title ?? dirname,
                 hidden: parent.hidden ?? false,
                 order: parent.order ?? 0,
                 icon: parent.icon ?? '',
                 role: parent.role ?? [],
-                filepath: name,
+                filepath: dirname,
                 layer: layer,
                 parentName: '',
                 children: [],
