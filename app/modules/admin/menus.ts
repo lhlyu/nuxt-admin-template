@@ -8,7 +8,7 @@ export const menusDeclare = `import type { MenuItem } from '#app'
 declare module '#menus' {
     const menus: MenuItem[];
     export const menuObject: Record<string, MenuItem>;
-    export const findMenu: (name: string) => MenuItem; 
+    export const findMenu: (name: string) => MenuItem | undefined; 
     export const findParents: (name: string) => MenuItem[]; 
     export default menus;
 }`
@@ -198,7 +198,7 @@ const generateMenus = (root: string, pages: NuxtPage[]): string => {
     const item = menuObject[name]
 
     if (!item) {
-        return []
+        return
     }
     return item
 }`)

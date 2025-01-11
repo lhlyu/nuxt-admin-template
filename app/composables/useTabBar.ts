@@ -1,4 +1,5 @@
 import { findMenu, findParents } from '#menus'
+import type { MenuItem } from '#app'
 
 const useTabBar = () => {
     const id = useId()
@@ -24,19 +25,19 @@ const useTabBar = () => {
 
     const route = useRoute()
 
-    const tabs = useState('tabs', () => [findMenu(route.name as string)])
+    const tabs = useState('tabs', () => [] as MenuItem[])
 
     const active = useState('tab-active', () => route.name as string)
 
     // keepalive
-    const actives = useState('actives', () => [findMenu(route.name as string).name])
+    const actives = useState('actives', () => [] as string[])
 
     watch(
         () => route,
         (to, from) => {
             const t = setTimeout(() => {
                 // 将标签移到可视范围
-                document.getElementById(to.name as string)?.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+                document?.getElementById(to.name as string)?.scrollIntoView({ behavior: 'smooth', inline: 'center' })
                 clearTimeout(t)
             }, 100)
             active.value = to.name as string
@@ -46,13 +47,17 @@ const useTabBar = () => {
 
             const menu = findMenu(to.name as string)
 
+            if (!menu) {
+                return
+            }
+
             if (!actives.value.includes(menu.name)) {
                 actives.value.push(menu.name)
             }
 
             tabs.value.push(menu)
         },
-        { deep: true },
+        { deep: true, immediate: true },
     )
 
     const switchTab = async (name: string) => {

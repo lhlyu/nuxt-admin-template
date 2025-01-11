@@ -34,7 +34,6 @@ export default defineNuxtModule({
 
         // 给每个页面设置唯一的name
         nuxt.hook('pages:extend', async (pages) => {
-
             function setName(items: NuxtPage[]) {
                 for (const page of items) {
                     page.name = getName('p', page.file!.slice(pageDir.length))
@@ -63,13 +62,11 @@ export default defineNuxtModule({
             ps = pages
 
             await updateTemplates({
-                filter: template => {
+                filter: (template) => {
                     console.log(template.filename)
                     return template.filename === 'menus.mjs'
-                }
+                },
             })
-
-
         })
 
         // 给每个页面设置唯一的组件名字
