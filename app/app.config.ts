@@ -1,6 +1,6 @@
 export default defineAppConfig({
     // 管理后台路由
-    admin: '/admin',
+    admin: '/dash',
     // 登录路由
     login: '/',
 })

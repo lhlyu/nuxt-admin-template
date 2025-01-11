@@ -1,38 +1,75 @@
 import { parse } from '@vue/compiler-sfc'
-import { createResolver, defineNuxtModule } from 'nuxt/kit'
+import { createResolver, defineNuxtModule, addTemplate, addTypeTemplate, updateTemplates } from 'nuxt/kit'
 import type { NuxtPage } from '@nuxt/schema'
+import { getName, extractDefinePageMeta } from '~/modules/admin/utils'
+import generateMenus, { menusDeclare } from '~/modules/admin/menus'
 
 const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtModule({
     meta: {
-        name: 'page',
+        name: 'admin',
+        configKey: 'admin-key',
+        compatibility: {
+            nuxt: '>=3.0.0',
+        },
     },
     async setup(options, nuxt) {
         // 页面所在的目录
-        const pageDir = nuxt.options.srcDir + '/pages/'
-        const pageDirLength = pageDir.length
+        const pageDir = `${nuxt.options.srcDir}/${nuxt.options.dir.pages}/`
 
-        // 根据页面路径提取唯一名字
-        const getPageName = (pagePath: string): string => {
-            const end = pagePath.length - 4
-            const name = pagePath.substring(pageDirLength, end).replaceAll('/', '+')
-            return name
-        }
+        let ps: NuxtPage[] = []
+
+        nuxt.options.alias['#menus'] = addTemplate({
+            filename: 'menus.mjs',
+            getContents: () => generateMenus(pageDir, ps),
+            write: true,
+        }).dst
+
+        addTypeTemplate({
+            filename: 'menus.d.ts',
+            getContents: () => menusDeclare,
+            write: true,
+        })
 
         // 给每个页面设置唯一的name
-        nuxt.hook('pages:extend', (pages) => {
+        nuxt.hook('pages:extend', async (pages) => {
+
             function setName(items: NuxtPage[]) {
                 for (const page of items) {
-                    page.name = getPageName(page.file!)
-                    page.meta ||= {}
+                    page.name = getName('p', page.file!.slice(pageDir.length))
+
+                    const pm = extractDefinePageMeta(page.file!)
+
+                    page.meta = Object.assign(
+                        {
+                            title: page.name,
+                            hidden: false,
+                            order: 0,
+                            role: [],
+                        },
+                        pm,
+                    )
+
                     if (page.children) {
                         setName(page.children)
                         continue
                     }
                 }
             }
+
             setName(pages)
+
+            ps = pages
+
+            await updateTemplates({
+                filter: template => {
+                    console.log(template.filename)
+                    return template.filename === 'menus.mjs'
+                }
+            })
+
+
         })
 
         // 给每个页面设置唯一的组件名字
@@ -45,10 +82,7 @@ export default defineNuxtModule({
                 async transform(code, id) {
                     if (isClient) {
                         if (id.toString().startsWith(pageDir) && id.toString().endsWith('.vue')) {
-                            const name = getPageName(id)
-
-                            // TODO: 检查是否存在 defineOptions({ name: '...' })
-                            // 如果name存在则替换，如果name属性不存在，则加上
+                            const name = getName('p', id.slice(pageDir.length))
 
                             const defineOptionsCode = `\ndefineOptions({name: '${name}'})\n`
 
@@ -66,6 +100,7 @@ export default defineNuxtModule({
 
                             let newScriptContent = scriptContent + defineOptionsCode
                             const newCode = code.replace(scriptContent, newScriptContent)
+
                             return {
                                 code: newCode,
                                 map: null,

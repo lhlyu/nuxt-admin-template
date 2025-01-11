@@ -23,6 +23,10 @@
 
 <script lang="ts" setup>
 const { loginForm, login } = useLogin()
+
+definePageMeta({
+    layout: 'blank',
+})
 </script>
 
 <style lang="scss" scoped>

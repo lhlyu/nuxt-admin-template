@@ -4,6 +4,9 @@ export default defineNuxtConfig({
     compatibilityDate: '2025-01-04',
     srcDir: 'app/',
     devtools: { enabled: true },
+    imports: {
+        dirs: ['stores'],
+    },
 
     modules: [
         '@vueuse/nuxt',
@@ -11,27 +14,17 @@ export default defineNuxtConfig({
         '@nuxt/icon',
         '@pinia/nuxt',
         'pinia-plugin-persistedstate/nuxt',
-        '@nuxtjs/color-mode',
         '@element-plus/nuxt',
     ],
 
     elementPlus: {
         importStyle: false,
+        defaultLocale: 'zh-cn',
     },
 
-    colorMode: {
-        preference: 'light',
-        fallback: 'light',
-        classPrefix: '',
-        classSuffix: '',
-        storage: 'cookie',
-        storageKey: 'nuxt-admin-color-mode',
-    },
-
-    css: ['element-plus/theme-chalk/dark/css-vars.css'],
+    css: ['element-plus/theme-chalk/dark/css-vars.css', 'element-plus/theme-chalk/index.css'],
 
     app: {
-        keepalive: true,
         head: {
             htmlAttrs: {
                 lang: 'zh-cmn-Hans',
@@ -39,12 +32,12 @@ export default defineNuxtConfig({
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
             title: '管理系统',
-            link: [
-                {
-                    href: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.7.7/index.min.css',
-                    rel: 'stylesheet',
-                },
-            ],
+            // link: [
+            //     {
+            //         href: 'https://cdn.bootcdn.net/ajax/libs/element-plus/2.7.7/index.min.css',
+            //         rel: 'stylesheet',
+            //     },
+            // ],
             // script: [
             //     {
             //         src: 'https://cdn.jsdelivr.net/npm/eruda',
@@ -56,17 +49,7 @@ export default defineNuxtConfig({
         rootTag: 'body',
     },
 
-    imports: {
-        dirs: ['stores'],
-    },
-
-    build: {
-        analyze: {
-            enabled: true,
-        },
-    },
-
-    features: {
-        inlineStyles: false,
-    },
+    // features: {
+    //     inlineStyles: false,
+    // },
 })

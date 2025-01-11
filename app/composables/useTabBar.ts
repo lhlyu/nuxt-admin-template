@@ -1,3 +1,5 @@
+import { findMenu, findParents } from '#menus'
+
 const useTabBar = () => {
     const id = useId()
 
@@ -22,46 +24,39 @@ const useTabBar = () => {
 
     const route = useRoute()
 
-    const tabs = useState('tabs', () => [
-        {
-            name: route.name as string,
-            icon: route.meta?.icon as string | undefined,
-            title: (route.meta?.title ?? route.name) as string,
-            path: route.fullPath,
-        },
-    ])
+    const tabs = useState('tabs', () => [findMenu(route.name as string)])
 
     const active = useState('tab-active', () => route.name as string)
 
     // keepalive
-    const actives = useState('actives', () => route.matched.map((value) => value.name as string))
+    const actives = useState('actives', () => [findMenu(route.name as string).name])
 
-    onBeforeRouteUpdate((to, from) => {
-        const t = setTimeout(() => {
-            document.getElementById(to.fullPath)?.scrollIntoView({ behavior: 'smooth', inline: 'center' })
-            clearTimeout(t)
-        }, 100)
-        active.value = to.name as string
-        if (tabs.value.some((item) => item.name === to.name)) {
-            return
-        }
-
-        to.matched.map((value) => {
-            if (!actives.value.includes(value.name as string)) {
-                actives.value.push(value.name as string)
+    watch(
+        () => route,
+        (to, from) => {
+            const t = setTimeout(() => {
+                // 将标签移到可视范围
+                document.getElementById(to.name as string)?.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+                clearTimeout(t)
+            }, 100)
+            active.value = to.name as string
+            if (tabs.value.some((item) => item.name === to.name)) {
+                return
             }
-        })
 
-        tabs.value.push({
-            name: to.name as string,
-            icon: to.meta?.icon as string | undefined,
-            title: (to.meta?.title ?? to.name) as string,
-            path: to.fullPath,
-        })
-    })
+            const menu = findMenu(to.name as string)
 
-    const switchTab = async (path: string) => {
-        await navigateTo(path)
+            if (!actives.value.includes(menu.name)) {
+                actives.value.push(menu.name)
+            }
+
+            tabs.value.push(menu)
+        },
+        { deep: true },
+    )
+
+    const switchTab = async (name: string) => {
+        await navigateTo({ name: name })
     }
 
     // 关闭标签
@@ -70,10 +65,14 @@ const useTabBar = () => {
             // 如果是当前已经激活的标签，则判断剩余标签元素长度是否大于1，如果大于1，则激活标签切到第一个元素
             if (name === active.value) {
                 if (tabs.value.length > 1) {
-                    tabs.value = tabs.value.filter((value) => value.name !== name)
-                    actives.value = actives.value.filter((value) => value !== name)
-                    active.value = tabs.value[0].name
-                    await switchTab(tabs.value[0].path)
+                    const newTabs = tabs.value.filter((value) => value.name !== name)
+
+                    // 这里一定要先切换标签，再关闭，否则keepalive会失效
+                    await switchTab(newTabs[0].name)
+                    await nextTick(() => {
+                        tabs.value = newTabs
+                        actives.value = newTabs.map((value) => value.name)
+                    })
                 }
                 return
             }

@@ -7,19 +7,17 @@
 
 ### 菜单meta定义
 
-```ts
-definePageMeta({
-    title: '用户管理', // 菜单的标题
-    icon: 'ep:user',  // 图标，使用 https://icones.js.org/
-    hidden: true,     // 在菜单不展示，默认为false
-    order: 2,         // 菜单的排序，越小越越靠前，默认为0
-    // permission: ['admin']  // 该页面需要的权限，默认为[]，表示都通行
-})
+- [类型声明](app/index.d.ts)
+
+- 修改meta定义后生成菜单
+
+```
+pnpm postinstall
 ```
 
 ## 问题
 
-- Nuxt3 keepalive存在问题 [27401](https://github.com/nuxt/nuxt/issues/27401)，嵌套路由导致实现选择性缓存很难
+- Nuxt3 keepalive存在问题 [27401](https://github.com/nuxt/nuxt/issues/27401)，嵌套路由导致实现选择性缓存很难，所以全部使用扁平路由
 
 
 ## 参考
@@ -36,3 +34,4 @@ definePageMeta({
 - [zptime/nuxt-admin-template](https://github.com/zptime/nuxt-admin-template)
 - [vampirefan/admin3](https://github.com/vampirefan/admin3)
 - [oliver225/thingsboard-ui-vue3](https://gitcode.com/oliver225/thingsboard-ui-vue3/overview)
+- [updateTemplates](https://stackblitz.com/edit/github-zcarjt?file=modules%2Ftest.ts)

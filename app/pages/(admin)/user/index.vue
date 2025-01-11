@@ -1,8 +1,8 @@
 <template>
-    <section :class="{ fit: device.isMobile }" v-loading="pending">
+    <section :class="{ fit: $device.isMobile }" v-loading="status === 'pending'">
         <el-card shadow="never">
             <el-form inline :model="query">
-                <el-space wrap :fill="device.isMobile" size="large">
+                <el-space wrap :fill="$device.isMobile" size="large">
                     <el-form-item label="名字">
                         <el-input clearable style="width: 200px" v-model="query.name" />
                     </el-form-item>
@@ -57,18 +57,13 @@ import { Plus, Delete, Search, Refresh } from '@element-plus/icons-vue'
 
 definePageMeta({
     title: '用户列表',
-    icon: 'ep:memo',
+    icon: 'lucide:user-round-pen',
+    parent: {
+        title: '用户管理',
+        icon: 'lucide:users',
+        order: 2,
+    },
 })
-
-onBeforeMount(() => {
-    console.log('✅装载:用户列表')
-})
-
-onBeforeUnmount(() => {
-    console.log('❌卸载:用户列表')
-})
-
-const device = useDevice()
 
 const query = reactive({
     current: 1,
@@ -77,7 +72,7 @@ const query = reactive({
     gender: 0,
 })
 
-const { data, execute, pending, error, refresh } = await useFetch('/api/user/search', {
+const { data, execute, status, error, refresh } = await useFetch('/api/user/search', {
     query: query,
     immediate: false,
     watch: false,

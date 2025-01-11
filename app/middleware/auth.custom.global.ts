@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const { getToken } = useLogin()
 
     if (getToken()) {
-        if (!to.path.startsWith(appConfig.admin)) {
+        if (to.path === appConfig.login) {
             return navigateTo(appConfig.admin)
         }
         return

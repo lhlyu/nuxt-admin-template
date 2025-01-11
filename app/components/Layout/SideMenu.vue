@@ -2,7 +2,7 @@
     <menu>
         <el-menu
             :default-active="$route.name as string"
-            :default-openeds="$route.matched.map((v) => v.name) as string[]"
+            :default-openeds="findParents($route.name as string).map((item) => item.name)"
         >
             <LayoutMenuItem :menus="menus"></LayoutMenuItem>
         </el-menu>
@@ -10,30 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type { RouteRecordRaw } from 'vue-router'
-
-const router = useRouter()
-
-// 给路由排序，按照order值，由小到大
-const sortRoutes = (routes: RouteRecordRaw[]) => {
-    routes.sort((a, b) => ((a.meta?.order as number) ?? 0) - ((b.meta?.order as number) ?? 0))
-
-    // 递归对每个路由的children进行排序
-    routes.forEach((route) => {
-        if (route.children && route.children.length) {
-            sortRoutes(route.children)
-        }
-    })
-}
-
-const appConfig = useAppConfig()
-
-const menus = computed<RouteRecordRaw[]>(() => {
-    const rs = router.options.routes.find((value) => value.path === appConfig.admin)?.children ?? []
-    const frs = rs.filter((value) => value.meta?.hidden !== true)
-    sortRoutes(frs)
-    return frs
-})
+import menus, { findParents } from '#menus'
 </script>
 
 <style lang="scss">

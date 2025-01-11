@@ -9,10 +9,10 @@
                 :key="t.name"
                 size="large"
                 closable
-                :id="t.path"
+                :id="t.name"
                 :effect="t.name === active ? 'dark' : 'plain'"
                 type="primary"
-                @click="switchTab(t.path)"
+                @click="switchTab(t.name)"
                 @close="closeTab(t.name)"
             >
                 <el-space :size="4">
